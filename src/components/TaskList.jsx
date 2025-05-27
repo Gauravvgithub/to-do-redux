@@ -64,11 +64,11 @@ const TaskList = () => {
               className="bg-grey-50 p-4 rounded-md shadow-sm flex-row justify-between items-center transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="m-2">
-                <h3 className="text-wrap text-lg font-medium text-gray-900">
-                {task.title}
+                <h3 className="text-wrap text-lg font-semibold text-black">
+                Title: {task.title}
                 </h3>
                 {task.description && (
-                  <p className="text-gray-900">{task.description}</p>
+                  <p className="text-gray-700">Description: {task.description}</p>
                 )}
                 <p className="text-wrap mt-1 text-sm font-semibold">
                   Status: {getStatusBadge(task.status)}
