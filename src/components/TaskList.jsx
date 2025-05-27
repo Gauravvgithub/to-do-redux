@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, fetchTodo } from "../features/Slice";
 import EditTask from "./EditTask";
 
-
 const TaskList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const loading = useSelector((state) => state.tasks.loading);
@@ -16,17 +15,42 @@ const TaskList = () => {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    dispatch(deleteTask(id))
-  }
+    dispatch(deleteTask(id));
+  };
 
   //   console.log(tasks)
 
   if (loading) {
-    return <p>Tasks loading ....</p>;
+    return <p className="text-center text-black-300">Tasks loading ....</p>;
   }
   if (error) {
-    return <p>There is an error</p>;
+    return <p className="text-center text-black-300">There is an error</p>;
   }
+
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "To Do":
+        return (
+          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1">
+            📝 To Do
+          </span>
+        );
+      case "In Progress":
+        return (
+          <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1">
+            🚧 In Progress
+          </span>
+        );
+      case "Completed":
+        return (
+          <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium inline-flex items-center gap-1">
+            ✅ Completed
+          </span>
+        );
+      default:
+        return <span>{status}</span>;
+    }
+  };
 
   return (
     <div>
@@ -34,17 +58,29 @@ const TaskList = () => {
         {/* <h2>Tasks</h2> */}
         <ul className="space-y-4">
           {tasks.map((task) => (
-            <li key={task.id} className="bg-grey-50 p-4 rounded-md shadow-sm flex justify-between items-center">
+            <li
+              key={task.id}
+              className="bg-grey-50 p-4 rounded-md shadow-sm flex justify-between items-center"
+            >
               <div>
-                <h3 className="text-wrap text-lg font-medium text-gray-800">{task.title}</h3>
-                {task.description && <p className="text-gray-800">{task.description}</p>}
-                <p className="text-wrap mt-1 text-sm font-semibold">Status: <span className="italic underline">{task.status}</span></p>
+                <h3 className="text-wrap text-lg font-medium text-gray-800">
+                  {task.title}
+                </h3>
+                {task.description && (
+                  <p className="text-gray-800">{task.description}</p>
+                )}
+                <p className="text-wrap mt-1 text-sm font-semibold">
+                  Status: {getStatusBadge(task.status)}
+                </p>
               </div>
               <div className="flex-col space-x-2">
-                <EditTask task={task}/>
-                <button className="max-h-fit mt-5 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-700"
-                onClick={() => handleDelete(task.id)} 
-                >Delete</button>
+                <EditTask task={task} />
+                <button
+                  className="max-h-fit mt-5 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-700"
+                  onClick={() => handleDelete(task.id)}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           ))}
