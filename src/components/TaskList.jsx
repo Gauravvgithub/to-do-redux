@@ -60,7 +60,7 @@ const TaskList = () => {
           {tasks.map((task) => (
             <li
               key={task.id}
-              className="bg-grey-50 p-4 rounded-md shadow-sm flex justify-between items-center"
+              className="bg-grey-50 p-4 rounded-md shadow-sm flex justify-between items-center transition-all duration-300 transform hover:-translate-y-2"
             >
               <div>
                 <h3 className="text-wrap text-lg font-medium text-gray-800">
@@ -76,7 +76,7 @@ const TaskList = () => {
               <div className="flex-col space-x-2">
                 <EditTask task={task} />
                 <button
-                  className="max-h-fit mt-5 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-700"
+                  className="max-h-fit mt-5 px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-500"
                   onClick={() => handleDelete(task.id)}
                 >
                   Delete

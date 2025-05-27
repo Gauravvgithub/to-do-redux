@@ -18,8 +18,8 @@ const EditTask = ({ task }) => {
   return (
     <div className="relative rounded-md shadow-lg z-10">
       {isEdit ? (
-        <div className="p-4">
-          <h2 className="text-xl font-semibold mb-3 text-indigo-500">
+        <div className="p-4 rounded-md" style={{backgroundColor:"#d6542c"}}>
+          <h2 className="text-xl font-semibold mb-3 text-indigo-900">
             Edit Task
           </h2>
           <div className="mb-4">
@@ -29,6 +29,8 @@ const EditTask = ({ task }) => {
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 "
+              style={{backgroundColor:"#eda28a"}}
+
               required
             />
           </div>
@@ -39,6 +41,7 @@ const EditTask = ({ task }) => {
               onChange={(event) => setDescription(event.target.value)}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 "
               rows="3"
+              style={{backgroundColor:"#eda28a"}}
             ></textarea>
           </div>
           <div className="mb-4">
@@ -46,23 +49,25 @@ const EditTask = ({ task }) => {
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 "
               value={status}
               onChange={(event) => setStatus(event.target.value)}
+              style={{backgroundColor:"#eda28a"}}
+
             >
-              <option value="To Do">To Do</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
+              <option value="To Do" className="bg-white">To Do</option>
+              <option value="In Progress" className="bg-white">In Progress</option>
+              <option value="Completed" className="bg-white">Completed</option>
             </select>
           </div>
           <div className="flex justify-between">
             <button
               type="submit"
-              className=" bg-indigo-600 text-white py-2 px-2 rounded-md hover:bg-indigo-700"
+              className=" bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-600"
               onClick={handleEdit}
             >
               Save
             </button>
             <button
               type="submit"
-              className=" bg-gray-300 text-white py-2 px-2 rounded-md hover:bg-indigo-700"
+              className=" bg-yellow-500 text-white py-2 px-2 rounded-md hover:bg-yellow-600"
               onClick={() => setIsEdit(false)}
             >
               Cancel
