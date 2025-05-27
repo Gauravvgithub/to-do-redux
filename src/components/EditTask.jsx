@@ -16,7 +16,7 @@ const EditTask = ({ task }) => {
   }
 
   return (
-    <div className="relative rounded-md shadow-lg z-10">
+    <div className="relative rounded-md  z-10">
       {isEdit ? (
         <div className="p-4 rounded-md" style={{backgroundColor:"#d6542c"}}>
           <h2 className="text-xl font-semibold mb-3 text-indigo-900">

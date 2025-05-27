@@ -25,7 +25,7 @@ const Slice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      state.tasks.push(action.payload);
+      state.tasks.unshift(action.payload);
     },
     editTask: (state, action) => {
       state.tasks = state.tasks.map((task) =>

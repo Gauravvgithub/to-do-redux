@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, fetchTodo } from "../features/Slice";
 import EditTask from "./EditTask";
+import './task.css'
 
 const TaskList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -56,18 +57,18 @@ const TaskList = () => {
     <div>
       <div>
         {/* <h2>Tasks</h2> */}
-        <ul className="space-y-4">
+        <ul className="grid grid-cols-2 gap-4" id="ul">
           {tasks.map((task) => (
             <li
               key={task.id}
-              className="bg-grey-50 p-4 rounded-md shadow-sm flex justify-between items-center transition-all duration-300 transform hover:-translate-y-2"
+              className="bg-grey-50 p-4 rounded-md shadow-sm flex-row justify-between items-center transition-all duration-300 transform hover:-translate-y-2"
             >
-              <div>
-                <h3 className="text-wrap text-lg font-medium text-gray-800">
-                  {task.title}
+              <div className="m-2">
+                <h3 className="text-wrap text-lg font-medium text-gray-900">
+                {task.title}
                 </h3>
                 {task.description && (
-                  <p className="text-gray-800">{task.description}</p>
+                  <p className="text-gray-900">{task.description}</p>
                 )}
                 <p className="text-wrap mt-1 text-sm font-semibold">
                   Status: {getStatusBadge(task.status)}
