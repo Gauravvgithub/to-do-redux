@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { loadFromLocalStorage } from "../utils/localStorage";
 
 const initialState = {
   tasks: [],
@@ -22,7 +23,9 @@ export const fetchTodo = createAsyncThunk("tasks/fetchTodo", async () => {
 
 const Slice = createSlice({
   name: "tasks",
-  initialState,
+  initialState:{
+    tasks: loadFromLocalStorage(),
+  },
   reducers: {
     addTask: (state, action) => {
       state.tasks.push(action.payload);
