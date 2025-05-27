@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, fetchTodo } from "../features/Slice";
 import EditTask from "./EditTask";
-import './task.css'
+import "./task.css";
 
 const TaskList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -16,7 +16,14 @@ const TaskList = () => {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    dispatch(deleteTask(id));
+    // Ask the user for confirmation
+    const isConfirmed = confirm("Are you sure you want to delete this task?");
+
+    // If the user confirms, then dispatch the delete action
+    if (isConfirmed) {
+      dispatch(deleteTask(id));
+    }
+    // No else needed here, as nothing happens if the user cancels
   };
 
   //   console.log(tasks)
@@ -65,10 +72,12 @@ const TaskList = () => {
             >
               <div className="m-2">
                 <h3 className="text-wrap text-lg font-semibold text-black">
-                Title: {task.title}
+                  Title: {task.title}
                 </h3>
                 {task.description && (
-                  <p className="text-gray-700">Description: {task.description}</p>
+                  <p className="text-gray-700">
+                    Description: {task.description}
+                  </p>
                 )}
                 <p className="text-wrap mt-1 text-sm font-semibold">
                   Status: {getStatusBadge(task.status)}
